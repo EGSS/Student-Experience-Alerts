@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">Student Experience Alerts</string>
+    <string name="app_name">Student Experience: Alerts</string>
+
+    <string name="amstel_home">Amstel Home</string>
+    <string name="nautique_living">Nautique Living</string>
+    <string name="ravel_residence">Ravel Residence</string>
+
+    <string name="receive_notifications">Receive Notifications</string>
+    <string name="image_description">Picture of the accomodation building</string>
+
 </resources>
