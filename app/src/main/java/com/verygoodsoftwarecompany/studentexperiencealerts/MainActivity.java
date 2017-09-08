@@ -2,18 +2,20 @@ package com.verygoodsoftwarecompany.studentexperiencealerts;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.ListView;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+import static com.verygoodsoftwarecompany.studentexperiencealerts.R.id.recyclerView;
 
-    private static final String TAG = "MainActivity";
+public class MainActivity extends AppCompatActivity {
 
     private Settings settings;
     private ArrayList<CardEntry> cardList;
-    private ListView residenceListView;
+    private RecyclerView residenceListView;
+    private RecyclerView.LayoutManager layoutManager;
 
     private void initaliseState() {
         settings = new Settings(this);
@@ -24,18 +26,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initaliseViews() {
-        Log.d(TAG, "initaliseViews: here");
-        residenceListView = (ListView) findViewById(R.id.residenceList);
-        CardAdapter adapter = new CardAdapter(MainActivity.this, R.layout.card_record, cardList);
-        Log.d(TAG, "initaliseViews: before set adapter");
+        residenceListView = (RecyclerView) findViewById(recyclerView);
+        CardAdapter adapter = new CardAdapter(MainActivity.this, cardList);
+        residenceListView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        residenceListView.setLayoutManager(layoutManager);
         residenceListView.setAdapter(adapter);
-        Log.d(TAG, "initaliseViews: after set adapter");
     }
+
+    public Settings getSettings() {
+        return settings;
+    }
+
+    private CardView cardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        cardView = (CardView) findViewById(R.);
+
         initaliseState();
         initaliseViews();
     }
